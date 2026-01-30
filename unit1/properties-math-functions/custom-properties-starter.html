@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Properties Practice</title>
+    <style>
+        /* Add your CSS here */
+        
+        /* Basic reset - you can keep or modify this */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Define your custom properties in :root */
+        :root {
+            /* Colors */
+            
+            /* Spacing scale */
+            
+            /* Typography scale */
+            
+            /* Layout values */
+        }
+        
+        /* Define dark theme */
+        [data-theme="dark"] {
+            /* Dark theme color overrides */
+        }
+        
+        /* Your component styles below */
+        
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <h2 class="nav-logo">Design System</h2>
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <h1>Custom Properties & Math Functions</h1>
+                <p class="hero-text">
+                    A responsive, themeable design system built entirely with modern CSS. 
+                    This page demonstrates the power of custom properties and math functions 
+                    for creating flexible, maintainable interfaces.
+                </p>
+                <div class="button-group">
+                    <button class="btn">Get Started</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="features">
+            <div class="container">
+                <h2>Features</h2>
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Fluid Typography</h3>
+                        <p>
+                            Text scales smoothly across all viewport sizes using clamp() 
+                            for responsive sizing without media queries.
+                        </p>
+                    </article>
+                    
+                    <article class="card card-featured">
+                        <h3>Custom Properties</h3>
+                        <p>
+                            A complete design system built with CSS variables that cascade 
+                            through the DOM and enable dynamic theming.
+                        </p>
+                    </article>
+                    
+                    <article class="card">
+                        <h3>Component Variations</h3>
+                        <p>
+                            Scoped custom properties create variations without duplicating 
+                            CSS, keeping code maintainable and DRY.
+                        </p>
+                    </article>
+                    
+                    <article class="card card-muted">
+                        <h3>Theme Support</h3>
+                        <p>
+                            Light and dark themes that automatically update all components 
+                            by redefining root-level custom properties.
+                        </p>
+                    </article>
+                    
+                    <article class="card">
+                        <h3>Responsive Spacing</h3>
+                        <p>
+                            Fluid spacing scales with viewport size, maintaining visual 
+                            hierarchy and breathing room on all devices.
+                        </p>
+                    </article>
+                    
+                    <article class="card">
+                        <h3>Math Functions</h3>
+                        <p>
+                            Calc and clamp functions enable dynamic calculations and 
+                            fluid sizing for truly responsive layouts.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Build?</h2>
+                <p>
+                    Start creating your own design systems with custom properties 
+                    and modern CSS math functions.
+                </p>
+                <button class="btn">Start Building</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Design System Practice. Built with modern CSS.</p>
+        </div>
+    </footer>
+</body>
+</html>

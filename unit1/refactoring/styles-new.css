@@ -1,0 +1,13 @@
+/* 
+ * NEW CSS - Your Refactored Version
+ * 
+ * Instructions:
+ * 1. Use CSS nesting to organize your styles
+ * 2. Replace repetitive selectors with :is() 
+ * 3. Use :where() for base styles with zero specificity
+ * 4. Implement :has() for conditional styling (cards with images)
+ * 5. Use :not() for exclusions where appropriate
+ * 
+ * Goal: Recreate the exact same visual appearance as styles-old.css
+ * but with cleaner, more maintainable code using modern CSS techniques.
+ */
