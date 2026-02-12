@@ -1,0 +1,328 @@
+/**
+ * Portfolio Layout
+ * 
+ * TODO: Implement the following layout requirements:
+ * 
+ * 1. STICKY FOOTER PATTERN (Flexbox)
+ *    - Make body a flex container with column direction
+ *    - Set min-height to 100vh
+ *    - Make main content area grow to push footer down
+ * 
+ * 2. HEADER LAYOUT (Grid Template Areas)
+ *    - Use grid-template-areas for header structure
+ *    - Create areas: logo, navigation
+ *    - Make it responsive (stack on mobile)
+ * 
+ * 3. NAVIGATION (Flexbox)
+ *    - Use flexbox for nav links
+ *    - Space items appropriately
+ *    - Align items vertically
+ * 
+ * 4. HERO SECTION (Grid)
+ *    - Use grid for hero content positioning
+ *    - Center content vertically and horizontally
+ * 
+ * 5. STATS GRID (Auto-Fit)
+ *    - Use repeat(auto-fit, minmax(..., 1fr))
+ *    - Make cards responsive without media queries
+ *    - Ensure minimum width works on mobile
+ * 
+ * 6. PHOTO GALLERY (Auto-Fill vs Auto-Fit)
+ *    - Experiment with both auto-fill and auto-fit
+ *    - Decide which works better for this layout
+ *    - Use minmax() for responsive columns
+ * 
+ * 7. ABOUT SECTION (Grid + Flexbox)
+ *    - Grid for image/text layout
+ *    - Flexbox for internal content arrangement
+ * 
+ * 8. FOOTER (Flexbox)
+ *    - Use flexbox for footer content
+ *    - Distribute space between elements
+ */
+
+/* ===========================================
+   STICKY FOOTER SETUP
+   =========================================== */
+/* 
+   TODO: Implement sticky footer pattern
+   Hint: body needs to be a flex container
+*/
+
+
+/* ===========================================
+   HEADER
+   =========================================== */
+.site-header {
+    background: white;
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-med) 0;
+}
+
+.header-container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+        "site-logo menu .";
+    /* TODO: Use grid-template-areas here */
+    /* Define areas for logo and nav */
+}
+
+.site-logo {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    grid-area: site-logo;
+}
+
+.site-nav {
+    grid-area: menu;
+}
+
+.site-nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.site-nav a {
+    color: var(--color-text-muted);
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+}
+
+.site-nav a:hover {
+    color: var(--color-primary);
+}
+
+
+/* ===========================================
+   MAIN CONTENT
+   =========================================== */
+.main-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+
+/* ===========================================
+   HERO SECTION
+   =========================================== */
+.hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    color: white;
+    padding: var(--spacing-xxxl) var(--spacing-lg);
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero h1 {
+    color: white;
+    margin-bottom: var(--spacing-med);
+}
+
+.hero p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xl);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* ===========================================
+   STATS SECTION
+   =========================================== */
+.stats-section {
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    background: white;
+}
+
+.stats-container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+}
+
+.stats-grid {
+    /* TODO: Use auto-fit with minmax */
+    /* Make cards responsive - 3 columns on desktop, fewer on smaller screens */
+    /* Hint: minmax(min(250px, 100%), 1fr) prevents overflow on mobile */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+}
+
+
+/* ===========================================
+   PHOTO GALLERY
+   =========================================== */
+.gallery-section {
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    background: var(--color-surface);
+}
+
+.gallery-container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: var(--spacing-lg);
+}
+
+
+/* ===========================================
+   ABOUT SECTION
+   =========================================== */
+.about-section {
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    background: white;
+}
+
+.about-container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "image description";
+        gap: var(--spacing-lg);
+    /* TODO: Use grid for image and text layout */
+    /* Desktop: image on left, text on right */
+    /* Mobile: stack vertically */
+}
+
+.about-image {
+    grid-area: image;
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+}
+
+.about-content {
+    grid-area: description;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    /* TODO: Assign to grid area or position */
+    /* Use flexbox internally for vertical spacing */
+}
+
+.about-content h2 {
+    text-align: center;
+}
+
+.about-content a { 
+    width: 150px;
+    margin: 0 auto;
+}
+
+
+/* ===========================================
+   FOOTER
+   =========================================== */
+.site-footer {
+    background: var(--color-text);
+    color: white;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    
+    /* TODO: Don't let footer grow (sticky footer requirement) */
+}
+
+.footer-container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    /* TODO: Use flexbox for footer layout */
+    /* Space between copyright and social links */
+}
+
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--spacing-med);
+}
+
+.footer-social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.footer-social a {
+    color: rgba(255, 255, 255, 0.8);
+    margin-left: var(--spacing-med);
+    transition: color var(--transition-fast);
+}
+
+.footer-social a:hover {
+    color: white;
+}
+
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+/* 
+   TODO: Add media queries where needed
+   The auto-fit/auto-fill grids handle most responsive behavior,
+   but you may need breakpoints for:
+   - Header layout (stack logo/nav on mobile)
+   - About section (stack image/text on mobile)
+
+*/
+
+@media (max-width: 768px)
+{
+    .about-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "image" 
+            "description"
+        ;
+        gap: var(--spacing-lg);
+    }
+
+    .header-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "site-logo"
+            "menu";
+        text-align: center;
+        gap: var(--spacing-med);
+    }
+
+    .site-nav ul {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+
