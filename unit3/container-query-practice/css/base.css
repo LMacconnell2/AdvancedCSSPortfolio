@@ -1,0 +1,103 @@
+/* ============================================
+   BASE STYLES
+   Foundational styles and color system
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 2rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Dashboard wrapper */
+.dashboard {
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+.dashboard-header {
+    margin-bottom: 2rem;
+
+    & h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: #f1f5f9;
+    }
+
+    & p {
+        color: #94a3b8;
+        font-size: 1.1rem;
+    }
+}
+
+/* ============================================
+   GRID LAYOUT SYSTEM
+   Controls page-level widget placement
+   Uses @media queries for viewport-based changes
+   ============================================ */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Widget container base styles */
+.widget-container {
+    /* TODO: Add container-type here to enable container queries */
+    border-radius: 12px;
+    background: #1e293b;
+    padding: 1.5rem;
+    border: 1px solid #334155;
+    min-width: 0;
+    overflow: hidden;
+
+    &.col-narrow {
+        grid-column: span 3;
+    }
+
+    &.col-medium {
+        grid-column: span 4;
+    }
+
+    &.col-wide {
+        grid-column: span 6;
+    }
+
+    &.col-full {
+        grid-column: span 12;
+    }
+}
+
+/* ============================================
+   RESPONSIVE GRID ADJUSTMENTS
+   Use @media queries to control grid spans at different viewport sizes
+   ============================================ */
+
+/* TODO: Add @media query for tablet (max-width: 1200px)
+   Hint: Make narrow widgets span 6 columns
+   Hint: Make medium and wide widgets span 6 columns
+*/
+
+/* TODO: Add @media query for mobile (max-width: 768px)
+   Hint: Reduce body padding to 0.75rem
+   Hint: Reduce dashboard-grid gap to 0.75rem
+   Hint: Reduce widget-container padding to 0.75rem
+   Hint: Make all widgets span 12 columns (full width)
+   Hint: Reduce padding on product-item, activity-item, metric-card to 0.5rem
+   Hint: Reduce gaps in product-list, user-activity-list, metrics-grid to 0.5rem
+   Hint: Reduce gaps in product-item, activity-item, activity-item-row to 0.5rem
+   Hint: Reduce gaps in revenue-chart, top-products, user-activity, performance-metrics to 0.5rem
+*/
