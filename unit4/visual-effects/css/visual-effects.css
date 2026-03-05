@@ -1,10 +1,32 @@
 body {
-  background: radial-gradient(circle at center, #f6daa1, #d15400);
-  height: 100vh;
+  background-image: 
+    radial-gradient(circle, rgb(255, 156, 50), rgb(121, 70, 0)),
+    url('../images/marble-texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+header {
+  max-width: 400px;
+  text-align: center;
+  width: 100%; /* Mobile: Full width at the top */
+  max-width: none; 
+  box-sizing: border-box;
+  align-items: center;
+  flex: 1;
+  background-image:
+    linear-gradient(#74441d, #503310);
+  padding: 20px;
+  margin-left: 0px;
+  z-index: 100;
 }
 
 #pizza-container {
@@ -14,7 +36,8 @@ body {
 }
 
 #pizza {
-    width: 500px;
+    max-width: 500px;
+    width: 80vw;
     transform: translateX(-100vw) rotate(-360deg);
     transition: transform 1s ease-out;
     -webkit-mask-size: 100% 100%;
@@ -24,6 +47,20 @@ body {
 }
 
 .pizza-title {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #fff;
+    text-shadow: 2px 2px 4px #000;
+    margin-bottom: 20px;
+}
+
+.scripture {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #fff;
+    text-shadow: 2px 2px 4px #000;
+    margin-bottom: 20px;
+}
+
+.reference {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     color: #fff;
     text-shadow: 2px 2px 4px #000;
@@ -45,4 +82,21 @@ body {
 #reset:hover {
     background-color: #ede100;
     transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+  body {
+    flex-direction: row; /* Desktop: Header on left, Pizza on right */
+    justify-content: flex-start;
+  }
+
+  #pizza-container {
+    margin-left: 100px; /* Space between header and pizza */
+  }
+
+  header {
+    width: 300px; /* Fixed width for the sidebar */
+    height: 100vh;
+    max-width: 400px;
+  }
 }
