@@ -1,0 +1,362 @@
+/* nav.css — Your work goes here. */
+
+/* ============================================================
+   SITE HEADER
+   ============================================================ */
+
+/* TODO: Style .site-header
+   - Fixed position at the top of the viewport, full width
+   - Height: var(--nav-height)
+   - Background: var(--color-surface) with a bottom border using var(--color-border)
+   - z-index high enough to sit above page content (100 works well)
+   - Optional: add backdrop-filter: blur() for a frosted-glass effect
+*/
+
+.site-header {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: var(--nav-height);
+   background: var(--color-surface);
+   border-bottom: 1px solid var(--color-border);
+   z-index: 100;
+   /* Optional frosted-glass effect */
+   backdrop-filter: blur(10px);
+}
+
+
+/* ============================================================
+   SITE NAV
+   ============================================================ */
+
+/* TODO: Style .site-nav
+   - Display as a flex row, align items centered
+   - Constrain max-width to var(--max-width), centered with auto margins
+   - Horizontal padding: var(--gutter)
+   - Full height of the header (var(--nav-height))
+   - Space between logo and links using justify-content
+*/
+
+.site-nav {
+   display: flex;
+   align-items: center;
+   max-width: var(--max-width);
+   margin: 0 auto;
+   padding: 0 var(--gutter);
+   height: var(--nav-height);
+   justify-content: space-between;
+}
+
+
+/* TODO: Style .nav-logo
+   - Font weight 700, slightly larger than body text
+   - Color: var(--color-accent-light)
+*/
+
+.nav-logo {
+   font-weight: 700;
+   font-size: 1.25rem;
+   color: var(--color-accent-light);
+}
+
+/* ============================================================
+   DESKTOP NAV LINKS
+   ============================================================ */
+
+/* TODO: Style .nav-links
+   - Display as a flex row with a comfortable gap between items
+   - Hide below 768px with display: none inside a media query
+*/
+
+.nav-links {
+   display: flex;
+   gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+   .nav-links {
+      display: none;
+   }
+}
+
+
+/* TODO: Style .nav-link
+   - Color: var(--color-text-muted)
+   - Font size slightly smaller than body
+   - Add a transition on color using var(--transition-base)
+   - On :hover, change color to var(--color-text)
+
+   OPTION: For a more polished effect, build a growing underline
+   using a ::after pseudo-element with width: 0 that transitions
+   to width: 100% on hover. Set height to 2px, background to
+   var(--color-accent), and position it below the link text.
+*/
+
+.nav-link {
+   color: var(--color-text-muted);
+   font-size: 0.95rem;
+   transition: color var(--transition-base);
+}
+
+.nav-link:hover {
+   color: var(--color-text);
+}
+
+.nav-link::after {
+   content: "";
+   display: block;
+   width: 0;
+   height: 2px;
+   background: var(--color-accent);
+   transition: width var(--transition-base);
+}
+
+/* ============================================================
+   HAMBURGER BUTTON
+   ============================================================ */
+
+/* TODO: Style .nav-toggle
+   - Hidden above 768px (display: none in a media query)
+   - Below 768px: display as a flex column, centered, with a gap
+     between lines; no background or border; cursor: pointer
+   - Width and height around 2rem x 2rem for a comfortable tap target
+*/
+
+.nav-toggle {
+   display: none;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 4px;
+   width: 2rem;
+   height: 2rem;
+   background: none;
+   border: none;
+   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+   .nav-toggle {
+      display: flex;
+   }
+}
+
+
+/* TODO: Style .hamburger-line
+   - Each span is a horizontal bar: full width of the button,
+     around 2px tall, background: var(--color-text), border-radius
+   - Add transitions on transform and opacity using var(--transition-base)
+     so the X animation plays in both directions
+*/
+
+.hamburger-line {
+   width: 100%;
+   height: 2px;
+   background: var(--color-text);
+   border-radius: 1px;
+   transition: transform var(--transition-base), opacity var(--transition-base);
+}  
+
+
+/* TODO: Hamburger-to-X animation
+   When aria-expanded="true" is on .nav-toggle, animate the three
+   lines into an X shape:
+   - Line 1 (.hamburger-line:nth-child(1)): rotate 45deg and translate
+     down enough to overlap the middle position (around translateY(8px))
+   - Line 2 (.hamburger-line:nth-child(2)): opacity 0
+   - Line 3 (.hamburger-line:nth-child(3)): rotate -45deg and translate
+     up to the middle position (around translateY(-8px))
+
+   Target these with: .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(n)
+*/
+
+.hamburger-line:nth-child(1) {
+   transform: rotate(0) translateY(0);
+}
+
+.hamburger-line:nth-child(2) {
+   opacity: 1;
+}
+
+.hamburger-line:nth-child(3) {
+   transform: rotate(0) translateY(0);
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+   transform: rotate(45deg) translateY(8px);
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+   opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+   transform: rotate(-45deg) translateY(-8px);
+}
+
+/* ============================================================
+   SLIDE-OUT MENU PANEL
+   ============================================================ */
+
+/* TODO: Style .slide-menu
+   - Fixed position, top 0, right 0
+   - Width: var(--slide-menu-width), full height (height: 100vh)
+   - Background: var(--color-surface), left border using var(--color-border)
+   - z-index above the overlay (150 works well)
+   - Default state: completely off-screen to the right using
+     transform: translateX(100%)
+   - Add transition on transform using var(--transition-slide) so
+     it animates in both directions
+   - Padding inside: 2rem or similar
+   - When .is-open is added by JavaScript:
+     transform: translateX(0)
+*/
+
+.slide-menu {
+   position: fixed;
+   top: 0;
+   right: 0;
+   width: var(--slide-menu-width);
+   height: 100vh;
+   background: var(--color-surface);
+   border-left: 1px solid var(--color-border);
+   z-index: 150;
+   transform: translateX(100%);
+   transition: transform var(--transition-slide);
+   padding: 2rem;
+}
+
+.slide-menu.is-open {
+   transform: translateX(0);
+}
+
+
+/* TODO: Style .slide-menu-close
+   - Position absolute, top-right corner of the panel
+   - No background or border, color: var(--color-text-muted)
+   - Font size around 1.5rem, cursor: pointer
+   - Hover: color var(--color-text)
+*/
+
+.slide-menu-close {
+   position: absolute;
+   top: 1rem;
+   right: 1rem;
+   background: none;
+   border: none;
+   color: var(--color-text-muted);
+   font-size: 1.5rem;
+   cursor: pointer;
+}
+
+
+/* ============================================================
+   STAGGERED LINK ENTRANCE
+   ============================================================ */
+
+/* TODO: Write a @keyframes rule called link-enter
+   - from: opacity 0, translateX(16px)
+   - to:   opacity 1, translateX(0)
+*/
+
+@keyframes link-enter {
+   from {
+      opacity: 0;
+      transform: translateX(16px);
+   }
+   to {
+      opacity: 1;
+      transform: translateX(0);
+   }
+}
+
+
+/* TODO: Style .slide-menu-links
+   - Display flex column with a gap between links
+   - Margin top to clear the close button
+*/
+
+.slide-menu-links {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   margin-top: 2.5rem; /* Adjust as needed to clear the close button */
+}
+
+
+/* TODO: Style .slide-menu-link
+   - Base state: opacity 0 (hidden when menu is closed, ready to
+     replay on the next open without JavaScript involvement)
+   - Font size larger than body text, color var(--color-text-muted)
+   - Hover: color var(--color-text)
+   - When the parent .slide-menu has .is-open, apply the link-enter
+     animation with: animation: link-enter 250ms ease-out forwards
+   - Use :nth-child selectors to add increasing animation-delay values
+     to each link so they stagger in. Increment by around 50ms per item:
+       :nth-child(1) — no delay
+       :nth-child(2) — 50ms
+       :nth-child(3) — 100ms
+       :nth-child(4) — 150ms
+*/
+
+.slide-menu-link {
+   opacity: 0;
+   font-size: 1.25rem;
+   color: var(--color-text-muted);
+   transition: color var(--transition-base);
+}
+
+.slide-menu-link:hover {
+   color: var(--color-text);
+}
+
+.slide-menu.is-open .slide-menu-link {
+   animation: link-enter 250ms ease-out forwards;
+}
+
+.slide-menu.is-open .slide-menu-link:nth-child(1) {
+   animation-delay: 0ms;
+}
+
+.slide-menu.is-open .slide-menu-link:nth-child(2) {
+   animation-delay: 50ms;
+}
+
+.slide-menu.is-open .slide-menu-link:nth-child(3) {
+   animation-delay: 100ms;
+}
+
+.slide-menu.is-open .slide-menu-link:nth-child(4) {
+   animation-delay: 150ms;
+}
+
+
+/* ============================================================
+   OVERLAY
+   ============================================================ */
+
+/* TODO: Style .slide-overlay
+   - Fixed position, covers the full viewport (inset: 0)
+   - Background: var(--color-overlay)
+   - z-index between the page content and the slide panel (120)
+   - Default state: opacity 0, pointer-events: none
+   - Add transition on opacity using var(--transition-slide)
+   - When .is-open is added by JavaScript:
+     opacity: 1, pointer-events: auto
+*/
+
+.slide-overlay {
+   position: fixed;
+   inset: 0;
+   background: var(--color-overlay);
+   z-index: 120;
+   opacity: 0;
+   pointer-events: none;
+   transition: opacity var(--transition-slide);
+}
+
+.slide-overlay.is-open {
+   opacity: 1;
+   pointer-events: auto;
+}

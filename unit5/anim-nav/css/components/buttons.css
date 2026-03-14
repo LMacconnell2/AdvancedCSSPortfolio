@@ -1,0 +1,173 @@
+/* buttons.css — Your work goes here. */
+
+/* ============================================================
+   BASE BUTTON
+   ============================================================ */
+
+/* TODO: Style .btn (base styles shared by all button variants)
+   - display: inline-flex, align-items: center, gap for icon spacing
+   - Padding: 0.6rem 1.25rem
+   - Border-radius: var(--radius-md)
+   - Font-size: 0.9rem, font-weight: 600
+   - cursor: pointer
+   - border: 1px solid transparent (variants override this)
+   - Transition transform and box-shadow using var(--transition-base)
+     so hover/active effects animate on all variants
+*/
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+
+/* ============================================================
+   PRIMARY BUTTON
+   ============================================================ */
+
+/* TODO: Style .btn-primary
+   - Background: var(--color-accent), color: white
+   - On :hover: lift the button with transform: translateY(-2px)
+     and deepen the shadow with box-shadow: var(--shadow-md)
+   - On :active: press it back down with transform: translateY(0)
+     and reduce the shadow back to var(--shadow-sm)
+*/
+
+.btn-primary {
+  background: var(--color-accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* ============================================================
+   GHOST BUTTON
+   ============================================================ */
+
+/* TODO: Style .btn-ghost
+   - Transparent background, color: var(--color-text-muted)
+   - Border: 1px solid var(--color-border)
+   - On :hover: background fills in with var(--color-surface-raised),
+     color changes to var(--color-text), border-color to var(--color-accent)
+   - Transition background, color, and border-color
+*/
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  transition: background var(--transition-base), color var(--transition-base), border-color var(--transition-base);
+}
+
+.btn-ghost:hover {
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  border-color: var(--color-accent);
+}
+
+
+/* ============================================================
+   ICON BUTTON
+   ============================================================ */
+
+/* TODO: Style .btn-icon
+   - Square button: equal width and height (around 2.5rem)
+   - Padding: 0, display: flex, centered content
+   - Transparent background, border: 1px solid var(--color-border)
+   - border-radius: var(--radius-md)
+   - color: var(--color-text-muted)
+   - On :hover: transform: scale(1.1), color: var(--color-accent-light)
+   - Transition: transform and color using var(--transition-base)
+*/
+
+.btn-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  transition: transform var(--transition-base), color var(--transition-base);
+}
+
+.btn-icon:hover {
+  transform: scale(1.1);
+  color: var(--color-accent-light);
+}
+
+
+/* ============================================================
+   LOADING BUTTON
+   ============================================================ */
+
+/* TODO: Write a @keyframes rule called spin
+   - from: transform: rotate(0deg)
+   - to:   transform: rotate(360deg)
+*/
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* TODO: Style .btn-loading
+   - Similar base to .btn-primary but use var(--color-surface-raised)
+     as background and var(--color-text-muted) as color to suggest
+     a disabled/pending state
+   - cursor: default (not interactive while loading)
+   - display: inline-flex with a gap so the spinner and text sit side by side
+*/
+
+.btn-loading {
+  background: var(--color-surface-raised);
+  color: var(--color-text-muted);
+  cursor: default;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+/* TODO: Style .loading-spinner
+   - Width and height: 1rem
+   - border-radius: 50% to make it a circle
+   - Border: 2px solid var(--color-border) (the track)
+   - Border-top-color: var(--color-accent-light) (the moving part)
+   - Apply the spin @keyframes with a duration of 700ms, linear easing,
+     and infinite iteration count
+*/
+
+.loading-spinner {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent-light);
+  animation: spin 700ms linear infinite;
+}
