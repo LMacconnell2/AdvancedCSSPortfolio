@@ -1,0 +1,38 @@
+/* transitions.css — Your work goes here. */
+
+/* ============================================================
+   VIEW TRANSITIONS
+   ============================================================ */
+
+/* TODO: Customize the gallery filter transition
+   ---------------------------------------------------------------
+   The gallery filter in gallery.js is already wired to
+   document.startViewTransition(). Click a filter button and
+   you will see the browser's built-in default cross-fade.
+
+   Your task is to customize that transition so it feels
+   intentional rather than generic.
+
+   The two pseudo-elements that control the transition are:
+     ::view-transition-old(root)  — the outgoing (fading out) snapshot
+     ::view-transition-new(root)  — the incoming (fading in) snapshot
+
+   Adjust the animation-duration and animation-timing-function on
+   each to produce a transition that feels deliberate and polished.
+   Experiment with different values. There is no single correct
+   answer here — aim for something that feels right to you.
+
+   Reference from the reading:
+     ::view-transition-old(root) { ... }
+     ::view-transition-new(root) { ... }
+*/
+
+::view-transition-old(root)  
+{
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.4, 0, 1, 1); /*AI generated bezier curve*/
+}
+::view-transition-new(root) {
+   animation-duration: 0.4s;
+   animation-timing-function: cubic-bezier(0, 0, 0.2, 1); /*AI generated bezier curve*/
+}
