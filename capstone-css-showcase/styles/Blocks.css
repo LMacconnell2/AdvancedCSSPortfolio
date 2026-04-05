@@ -1,0 +1,45 @@
+/* Navigation Block */
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-sm);
+  background: var(--color-secondary);
+  padding: var(--gap-sm);
+}
+
+nav a {
+  color: var(--color-light);
+  font-weight: bold;
+}
+
+/* Article & Section Styling */
+article {
+  padding-block: var(--gap-lg);
+  border-bottom: 1px solid var(--color-accent);
+}
+
+blockquote {
+  padding: var(--gap-md);
+  background: color-mix(in srgb, var(--color-accent), transparent 80%);
+  border-left: 4px solid var(--color-primary);
+  font-style: italic;
+}
+
+/* Sidebar Profiles & Featured Styles */
+aside {
+  background: var(--color-dark);
+  color: var(--color-light);
+  padding: var(--gap-md);
+  border-radius: var(--border-radius);
+}
+
+aside a {
+  color: var(--color-accent);
+}
+
+/* SVG Icon handling */
+.link-github svg {
+  width: 1.25rem;
+  fill: currentColor;
+  vertical-align: middle;
+}

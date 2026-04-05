@@ -1,1 +1,62 @@
 @import "/styles/reset.css";
+@import "/styles/Composition.css";
+@import "styles/Utilities.css";
+@import "styles/Blocks.css";
+@import "styles/Exceptions.css";
+
+:root {
+  /* Brand Colors */
+  --color-light: #BEEF9E;
+  --color-accent: #A6C36F;
+  --color-primary: #828C51;
+  --color-secondary: #335145;
+  --color-dark: #1E352F;
+
+  /* Functional Color Mapping */
+  --bg-body: var(--color-light);
+  --text-main: var(--color-dark);
+  --text-muted: var(--color-secondary);
+  --link-color: var(--color-secondary);
+  --link-hover: var(--color-dark);
+}
+
+:root {
+  /* Scale Constants */
+  --base-size: 1rem;       /* 16px default */
+  --ratio: 1.25;           /* Major Third scale */
+
+  /* Font Sizes (calculated) */
+  --font-size-xs: calc(var(--base-size) / var(--ratio));
+  --font-size-sm: var(--base-size);
+  --font-size-md: calc(var(--font-size-sm) * var(--ratio));
+  --font-size-lg: calc(var(--font-size-md) * var(--ratio));
+  --font-size-xl: calc(var(--font-size-lg) * var(--ratio));
+  --font-size-xxl: calc(var(--font-size-xl) * var(--ratio));
+
+  /* Fluid Typography (Optional: scales between 1rem and 1.5rem based on screen) */
+  --font-size-fluid: clamp(1rem, 4vw, 1.5rem);
+
+  /* Gaps & Spacing */
+  --gap-xs: 0.5rem;
+  --gap-sm: 1rem;
+  --gap-md: calc(var(--gap-sm) * var(--ratio));
+  --gap-lg: calc(var(--gap-md) * var(--ratio));
+  
+  /* CUBE Flow Space (The "Stack" utility) */
+  --flow-space: var(--gap-md);
+}
+
+:root {
+  /* Composition / Layout */
+  --container-max-width: 75rem;
+  --container-gutter: var(--gap-sm);
+  
+  /* Borders & Shadows */
+  --border-radius: 4px;
+  --transition-speed: 250ms;
+  --transition-ease: ease-in-out;
+
+  /* Shadows (using your dark color with transparency) */
+  --shadow-sm: 0 2px 4px rgba(30, 53, 47, 0.1);
+  --shadow-md: 0 4px 12px rgba(30, 53, 47, 0.15);
+}

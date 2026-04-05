@@ -1,0 +1,23 @@
+/* Exception for the featured styles list */
+.features li[data-state="active"] {
+  border: 2px solid var(--color-accent);
+}
+
+/* Handling the 'Download' links specifically */
+[class^="link-download"] {
+  display: inline-block;
+  padding: var(--gap-xs) var(--gap-sm);
+  background: var(--color-primary);
+  color: var(--color-light);
+  border-radius: var(--border-radius);
+  transition: background var(--transition-speed) var(--transition-ease);
+}
+
+[class^="link-download"]:hover {
+  background: var(--color-secondary);
+}
+
+/* Targeting specific ID for background variation */
+#contribute {
+  background-color: color-mix(in srgb, var(--color-light), black 5%);
+}

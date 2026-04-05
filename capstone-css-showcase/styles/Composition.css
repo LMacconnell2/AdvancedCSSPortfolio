@@ -1,0 +1,36 @@
+/* Layout Grid for the entire page */
+body {
+  display: grid;
+  grid-template-areas: 
+    "header"
+    "nav"
+    "main"
+    "profile"
+    "styles"
+    "footer";
+  gap: var(--gap-lg);
+}
+
+@media (min-width: 60rem) {
+  body {
+    grid-template-columns: 1fr 300px;
+    grid-template-areas: 
+      "header header"
+      "nav    nav"
+      "main   profile"
+      "main   styles"
+      "footer footer";
+  }
+}
+
+header { grid-area: header; }
+nav    { grid-area: nav; }
+main   { grid-area: main; }
+.profile { grid-area: profile; }
+#styles  { grid-area: styles; }
+footer.page-footer { grid-area: footer; }
+
+/* The "Stack" - Provides vertical rhythm to all text containers */
+.container > * + * {
+  margin-top: var(--flow-space);
+}
