@@ -1,0 +1,188 @@
+/* LESS */
+/* Brand colors and spacing */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --base-spacing: 1rem;
+    --border-radius: 0.5rem;
+}
+
+/* Mixin for consistent button styles */
+.button-base {
+    padding: calc(var(--base-spacing) * 1.5);
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Navigation component */
+.navigation {
+    background-color: var(--primary-color);
+    padding: var(--base-spacing);
+
+    .nav-list {
+        display: flex;
+        gap: var(--base-spacing);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            a {
+                color: white;
+                text-decoration: none;
+                padding: calc(var(--base-spacing) * 0.5);
+                border-radius: calc(var(--border-radius) * 0.5);
+
+                &:hover {
+                    background-color: color-mix(in srgb, var(--primary-color) 90%, white 10%)
+                }
+
+                &.active {
+                    background-color: var(--secondary-color);
+                }
+            }
+        }
+    }
+}
+
+/* Button styles */
+.btn {
+    .button-base
+
+    &.btn-primary {
+        background-color: var(--secondary-color);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--secondary-color) 92%, black 8%)
+        }
+    }
+
+    &.btn-danger {
+        background-color: var(--accent-color);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 92%, black 8%)
+        }
+    }
+}
+
+/* Card component */
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: calc(var(--base-spacing) * 1.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .card-header {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: var(--base-spacing);
+        border-bottom: 2px solid var(--secondary-color);
+        padding-bottom: calc(var(--base-spacing) * 0.5);
+    }
+
+    .card-body {
+        color: #333;
+        line-height: 1.6;
+    }
+}
+
+/* SCSS */
+
+/* // Brand colors and spacing */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --base-spacing: 1rem;
+    --border-radius: 0.5rem;
+}
+
+/* // Mixin for consistent button styles */
+.button-base {
+    padding: calc(var(--base-spacing) * 1.5);
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* // Navigation component */
+.navigation {
+    background-color: var(--primary-color);
+    padding: var(--base-spacing);
+
+    .nav-list {
+        display: flex;
+        gap: var(--base-spacing);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            a {
+                color: white;
+                text-decoration: none;
+                padding: calc(var(--base-spacing) * 0.5);
+                border-radius: calc(var(--border-radius) * 0.5);
+
+                &:hover {
+                    background-color: color-mix(in srgb, var(--primary-color) 90%, white 10%);
+                }
+
+                &.active {
+                    background-color: var(--secondary-color);
+                }
+            }
+        }
+    }
+}
+
+/* // Button styles */
+.btn {
+
+    &.btn-primary {
+        background-color: var(--secondary-color);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--secondary-color) 92%, black 8%)
+        }
+    }
+
+    &.btn-danger {
+        background-color: var(--accent-color);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 92%, black 8%)
+        }
+    }
+}
+
+/* // Card component */
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: calc(var(--base-spacing) * 1.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .card-header {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: var(--base-spacing);
+        border-bottom: 2px solid var(--secondary-color);
+        padding-bottom: calc(var(--base-spacing) * 0.5);
+    }
+
+    .card-body {
+        color: #333;
+        line-height: 1.6;
+    }
+}
+/* Nesting: Modern Css does support nesting, and as such I have left the nesting mostly untouched, however ideally this nesting would be flattened out.  */
+
+/* Handling mixins: The simplest way is to make button-base its own class and reference both that class and the rest of the button style classes in the HTML. */

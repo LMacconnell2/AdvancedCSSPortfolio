@@ -1,0 +1,64 @@
+.navigation {
+  background-color: #2c3e50;
+  padding: 1rem;
+}
+.navigation .nav-list {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navigation .nav-list li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+.navigation .nav-list li a:hover {
+  background-color: rgb(62.0967741935, 87.5, 112.9032258065);
+}
+.navigation .nav-list li a.active {
+  background-color: #3498db;
+}
+
+.btn {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn.btn-primary {
+  background-color: #3498db;
+}
+.btn.btn-primary:hover {
+  background-color: rgb(34.6744769874, 130.9924686192, 195.5255230126);
+}
+.btn.btn-danger {
+  background-color: #e74c3c;
+}
+.btn.btn-danger:hover {
+  background-color: rgb(222.7808219178, 45.698630137, 27.4191780822);
+}
+
+.card {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.card .card-header {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+.card .card-body {
+  color: #333;
+  line-height: 1.6;
+}
+
+/*# sourceMappingURL=compiled-sass.css.map */

@@ -1,0 +1,25 @@
+/* Analyze which color applies to each paragraph element below */
+
+p {
+    color: blue;
+}
+
+.intro {
+    color: green;
+}
+
+#special {
+    color: red;
+}
+
+div p {
+    color: purple;
+}
+
+.container .intro {
+    color: orange;
+}
+
+#special.intro {
+    color: brown;
+}
