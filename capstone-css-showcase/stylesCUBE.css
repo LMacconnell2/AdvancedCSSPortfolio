@@ -1,0 +1,147 @@
+/* =========================
+   COMPOSITION
+========================= */
+
+/* Page layout */
+@media (min-width: 60rem) {
+  body {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      "header header"
+      "nav nav"
+      "main sidebar"
+      "main sidebar"
+      "footer footer";
+  }
+}
+
+header { grid-area: header; }
+nav { grid-area: nav; }
+main { grid-area: main; }
+.page-footer { grid-area: footer; }
+
+/* Sidebar flow */
+.profile,
+#styles {
+  grid-area: sidebar;
+  align-self: start;
+  margin-top: var(--gap-lg);
+}
+
+/* Main layout */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
+  padding: var(--gap-lg);
+}
+
+/* Articles fill available space */
+@media (min-width: 60rem) {
+  main article {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+/* =========================
+   BLOCKS
+========================= */
+
+/* HEADER */
+header {
+  position: relative;
+  background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover;
+  color: var(--color-light);
+  padding: calc(var(--gap-lg) * 3) 0 var(--gap-lg);
+  box-shadow: var(--shadow-md);
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(39,65,86,0.65));
+}
+
+/* NAV */
+nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  padding: var(--gap-sm);
+  background: var(--color-secondary);
+}
+
+@media (min-width: 60rem) {
+  nav ul {
+    flex-direction: row;
+  }
+}
+
+/* ARTICLE */
+article {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid color-mix(in srgb, var(--color-primary), transparent 80%);
+  border-radius: var(--border-radius);
+  padding: var(--gap-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ASIDE */
+aside {
+  background: rgba(28,110,140,0.08);
+  border-left: 3px solid var(--color-sunset);
+  border-radius: var(--border-radius);
+  padding: var(--gap-md);
+  box-shadow: var(--shadow-md);
+}
+
+/* FOOTER */
+.page-footer {
+  background: linear-gradient(to top, #0b1f2b, var(--color-deep));
+  color: var(--color-light);
+  padding: var(--gap-lg) 0;
+}
+
+/* =========================
+   UTILITIES
+========================= */
+
+.flow > * + * {
+  margin-top: var(--flow-space);
+}
+
+.center {
+  margin-inline: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.max-content {
+  max-width: 75ch;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* =========================
+   EXCEPTIONS
+========================= */
+
+/* Desktop override for articles */
+@media (min-width: 60rem) {
+  main article {
+    max-width: none;
+  }
+}
+
+/* Remove weird manual offset */
+#styles {
+  position: static;
+}
