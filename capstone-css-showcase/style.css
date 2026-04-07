@@ -1,62 +1,491 @@
-@import "/styles/reset.css";
-@import "/styles/Composition.css";
-@import "styles/Utilities.css";
-@import "styles/Blocks.css";
-@import "styles/Exceptions.css";
+@import "./styles/reset.css";
 
+/* =========================
+   ROOT VARIABLES
+========================= */
 :root {
-  /* Brand Colors */
-  --color-light: #BEEF9E;
-  --color-accent: #A6C36F;
-  --color-primary: #828C51;
-  --color-secondary: #335145;
-  --color-dark: #1E352F;
+  /* Colors */
+  --color-light: #FBFCFF; 
+  --color-soft: #D0CCD0; 
+  --color-primary: #1C6E8C; 
+  --color-secondary: #274156; 
+  --color-neutral: #605856; 
+  --color-deep: #0f2a3a;
+  --color-sunset: #f4a261;
+  --color-sunset-deep: #e76f51;
 
-  /* Functional Color Mapping */
+  /* Functional */
   --bg-body: var(--color-light);
-  --text-main: var(--color-dark);
-  --text-muted: var(--color-secondary);
-  --link-color: var(--color-secondary);
-  --link-hover: var(--color-dark);
-}
+  --bg-surface: var(--color-soft);
+  --text-main: var(--color-secondary);
+  --text-muted: var(--color-neutral);
+  --link-color: var(--color-primary);
+  --link-hover: var(--color-secondary);
 
-:root {
-  /* Scale Constants */
-  --base-size: 1rem;       /* 16px default */
-  --ratio: 1.25;           /* Major Third scale */
+  /* Typography */
+  --base-size: 1rem;
+  --ratio: 1.25;
 
-  /* Font Sizes (calculated) */
   --font-size-xs: calc(var(--base-size) / var(--ratio));
   --font-size-sm: var(--base-size);
   --font-size-md: calc(var(--font-size-sm) * var(--ratio));
   --font-size-lg: calc(var(--font-size-md) * var(--ratio));
   --font-size-xl: calc(var(--font-size-lg) * var(--ratio));
   --font-size-xxl: calc(var(--font-size-xl) * var(--ratio));
-
-  /* Fluid Typography (Optional: scales between 1rem and 1.5rem based on screen) */
   --font-size-fluid: clamp(1rem, 4vw, 1.5rem);
 
-  /* Gaps & Spacing */
+  /* Spacing */
   --gap-xs: 0.5rem;
   --gap-sm: 1rem;
   --gap-md: calc(var(--gap-sm) * var(--ratio));
   --gap-lg: calc(var(--gap-md) * var(--ratio));
-  
-  /* CUBE Flow Space (The "Stack" utility) */
-  --flow-space: var(--gap-md);
-}
+  --flow-space: var(--gap-lg);
 
-:root {
-  /* Composition / Layout */
+  /* Layout */
   --container-max-width: 75rem;
   --container-gutter: var(--gap-sm);
-  
-  /* Borders & Shadows */
-  --border-radius: 4px;
+
+  /* Effects */
   --transition-speed: 250ms;
   --transition-ease: ease-in-out;
-
-  /* Shadows (using your dark color with transparency) */
   --shadow-sm: 0 2px 4px rgba(30, 53, 47, 0.1);
   --shadow-md: 0 4px 12px rgba(30, 53, 47, 0.15);
+  --border-radius: 8px;
+}
+
+/* =========================
+   BASE
+========================= */
+body {
+  display: block;
+  background: var(--color-light);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  position: relative;
+  background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover;
+  color: var(--color-light);
+  padding: calc(var(--gap-lg) * 3) 0 var(--gap-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 0;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(39,65,86,0.65));
+  z-index: 0;
+}
+
+header .container {
+  position: relative;
+  z-index: 1;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+header .container > * + * {
+  margin-top: var(--gap-sm);
+}
+
+header h1,
+header h2,
+header p {
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  color : var(--color-light);
+}
+
+header a {
+  color: var(--color-light);
+}
+
+/* =========================
+   NAV
+========================= */
+nav {
+  position: relative;
+  margin-top: 0;
+  z-index: 10;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: var(--gap-sm);
+  padding: var(--gap-sm);
+  justify-content: center;
+  background: var(--color-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 60rem) {
+  nav ul {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 60rem) {
+  nav li {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-primary), transparent 80%);
+    width: 100%;
+    text-align: center;
+    padding: var(--gap-sm) 0;
+  }
+}
+
+
+nav a {
+  position: relative;
+  color: var(--color-light);
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease-out;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* =========================
+   LINKS
+========================= */
+a {
+  transition: all 200ms ease;
+  text-decoration-color: transparent;
+}
+
+a:hover {
+  text-decoration-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* GitHub button */
+.link-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--border-radius);
+}
+
+.link-github:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+
+.link-github svg path {
+  fill: #facc15;
+}
+
+.link-github:hover svg path {
+  fill: #fde047;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+h1 { font-size: var(--font-size-xxl); line-height: 1.2; font-weight: 800; }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+h4 { font-size: var(--font-size-md); }
+
+h2, h3, h4 {
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--color-secondary);
+}
+
+p {
+  color: var(--text-muted);
+  max-width: 65ch;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.container {
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+.container > * + * {
+  margin-top: var(--flow-space);
+}
+
+/* MAIN */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
+  padding: var(--gap-lg);
+    background: linear-gradient(
+    to bottom,
+    #eaf3f7,
+    var(--color-light)
+  );
+}
+
+main .container {
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Desktop override (kept but simplified) */
+@media (min-width: 60rem) {
+  main {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+}
+
+/* =========================
+   ARTICLES
+========================= */
+article {
+  position: relative;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid color-mix(in srgb, var(--color-primary), transparent 80%);
+  border-radius: var(--border-radius);
+  padding: var(--gap-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+article + article {
+  margin-top: var(--gap-lg);
+}
+
+main article {
+  max-width: 75ch;
+  margin-inline: auto;
+}
+
+article h2 {
+  padding-bottom: var(--gap-xs);
+  margin-bottom: var(--gap-md);
+  border-bottom: 2px solid color-mix(in srgb, var(--color-primary), transparent 60%);
+}
+
+/* Wave divider */
+article:not(:last-of-type)::after {
+  content: "";
+  display: block;
+  height: 40px;
+  margin-top: var(--gap-lg);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,40 C300,120 900,0 1200,80 L1200,120 L0,120 Z' fill='%231C6E8C' fill-opacity='0.5'/%3E%3C/svg%3E") no-repeat center/cover;
+  opacity: 0.6;
+}
+
+/* =========================
+   PROFILE + STYLES
+========================= */
+.profile,
+#styles {
+  position: static;
+  align-self: start;
+  max-width: 60ch;
+  margin-inline: auto;
+}
+
+.profile {
+  margin-bottom: var(--gap-md);
+  color: var(--color-secondary);
+}
+
+#styles {
+  padding-bottom: calc(var(--gap-sm) * 2);
+  margin-bottom: var(--gap-md);
+}
+
+#styles .features li a {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  background: rgba(28, 110, 140, 0.12);
+  border: 1px solid color-mix(in srgb, var(--color-primary), transparent 70%);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--color-secondary);
+  transition: all 200ms ease;
+  margin: var(--gap-xs);
+}
+
+.profile ul {
+  display: grid;
+  gap: var(--gap-xs);
+}
+
+.profile li span:first-child {
+  font-weight: bold;
+  color: var(--color-secondary);
+}
+
+/* =========================
+   ASIDE
+========================= */
+aside {
+  background: rgba(28,110,140,0.08);
+  backdrop-filter: blur(10px);
+  border-left: 3px solid var(--color-sunset);
+  border-radius: var(--border-radius);
+  padding: var(--gap-md);
+  box-shadow: var(--shadow-md);
+  max-width: 40vw;
+}
+
+/* =========================
+   BLOCKQUOTE
+========================= */
+blockquote {
+  background: color-mix(in srgb, var(--color-primary), white 88%);
+  border-left: 4px solid var(--color-primary);
+  padding: var(--gap-md);
+  border-radius: var(--border-radius);
+  font-style: italic;
+  color: var(--color-secondary);
+}
+
+/* =========================
+   LISTS
+========================= */
+main ul {
+  padding-left: 1.25rem;
+}
+
+main li {
+  margin-bottom: 0.4rem;
+  padding-left: 0.25rem;
+}
+
+main li::marker {
+  color: var(--color-primary);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.page-footer {
+  background: linear-gradient(to top, #0b1f2b, var(--color-deep));
+  color: var(--color-light);
+  padding: var(--gap-lg) 0;
+}
+
+.page-footer .container {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-md);
+  text-align: center;
+}
+
+.page-footer p {
+  color: var(--color-soft);
+  max-width: 100vw;
+  margin-top: 0;
+}
+
+.page-footer a {
+  color: var(--color-light);
+}
+
+.page-footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-sm);
+  list-style: none;
+  margin-top: 0;
+}
+
+/* =========================
+   BUTTON LINKS
+========================= */
+[class^="link-download"],
+.link-guidelines,
+.link-allstyles {
+  display: inline-block;
+  padding: var(--gap-xs) var(--gap-sm);
+  background: var(--color-primary);
+  color: var(--color-light);
+  border-radius: var(--border-radius);
+}
+
+[class^="link-download"]:hover,
+.link-guidelines:hover,
+.link-allstyles:hover {
+  background: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   EFFECTS
+========================= */
+@media (prefers-reduced-motion: no-preference) {
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(28,110,140,0.05), transparent);
+    animation: wave 12s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes wave {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+  }
+}
+
+/* Scroll progress bar */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(to right, var(--color-primary), var(--color-sunset));
+  z-index: 9999;
+  animation: scroll-progress linear;
+  animation-timeline: scroll();
+}
+
+/* =========================
+   SVG NORMALIZATION
+========================= */
+svg {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+}
+
+.link-github svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
