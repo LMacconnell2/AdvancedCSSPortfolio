@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Properties Practice</title>
+    <style>
+:root {
+
+    /*
+ * REFLECTION
+ * 
+ * Custom Properties vs Hard-coded Values:
+ * Custom properites allow for a single source of truth, leading to greater consitency and easy editing of colors across the enture project.
+ * Furthermore, it also allows for dynamic values to be inserted as variables which only have to be calucalated once as opposed to 
+ * having to recaculate them for every instance of the value in the CSS document. 
+ * 
+ * Using clamp() for Fluid Design:
+ * Clamp is something I have not frequently used, but I now see its usefulness. Take the main header for example, 
+ * it scales seamlessly regardless of the viewport size, growing and shrink up/down to a certain point where the text is still legible and manageable.
+ * 
+ * Scoped Custom Properties:
+ * While not included in this css file, scoped custom properties allow me to add/edit variables within specific sections of the page. 
+ * For example, I could set the primary color of the document to be #FFF but in a hero section, I may want to change the primary color to be #000. With scoped custom properties, I can easily do this without having to create a new variable or class for the hero section..
+ * 
+ * Theme Switching:
+ * With custom properties, switching themes is simple. All that is needed is to redefine the root level variables.
+ */
+
+    /* =========================
+       COLOR PALETTE
+    ========================= */
+    --color-bg: #ffffff;
+    --color-surface: #f8fafc;
+    --color-primary: #2563eb;
+    --color-primary-dark: #1e40af;
+    --color-text: #0f172a;
+    --color-text-muted: #64748b;
+    --color-border: #e2e8f0;
+
+    /* =========================
+       SPACING SCALE (fluid)
+    ========================= */
+    --space-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+    --space-sm: clamp(0.5rem, 1vw, 0.75rem);
+    --space-md: clamp(1rem, 2vw, 1.5rem);
+    --space-lg: clamp(1.5rem, 3vw, 2.5rem);
+    --space-xl: clamp(2rem, 5vw, 4rem);
+
+    /* =========================
+       TYPOGRAPHY SCALE
+    ========================= */
+    --text-sm: clamp(0.8rem, 0.9vw, 0.9rem);
+    --text-base: clamp(1rem, 1.2vw, 1.125rem);
+    --text-lg: clamp(1.25rem, 1.8vw, 1.5rem);
+    --text-xl: clamp(1.75rem, 3vw, 2.5rem);
+    --text-xxl: clamp(2.5rem, 5vw, 4rem);
+
+    /* =========================
+       LAYOUT VALUES
+    ========================= */
+    --max-width: 1200px;
+
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 10px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+}
+ /* =========================
+        Dark Theme Overrides 
+    ========================= */
+[data-theme="dark"] {
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+    --color-text: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-border: #334155;
+    --color-primary: #60a5fa;
+}
+
+ /* =========================
+        Global Styles
+    ========================= */
+    body {
+    font-family: system-ui, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: var(--text-base);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-md);
+}
+
+ /* =========================
+        Nav Styles
+    ========================= */
+
+.nav {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+}
+
+.nav-logo {
+    font-size: var(--text-lg);
+}
+
+.nav-list {
+    display: flex;
+    gap: var(--space-md);
+    list-style: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+}
+
+.nav-link.active {
+    color: var(--color-primary);
+}
+
+ /* =========================
+        Hero Styles
+    ========================= */
+
+.hero {
+    padding: var(--space-xl) 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: var(--text-xxl);
+    margin-bottom: var(--space-md);
+}
+
+.hero-text {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+}
+
+ /* =========================
+        Button Styles
+    ========================= */
+
+    .btn {
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: white;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+    background: var(--color-primary-dark);
+}
+
+.btn-secondary {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+/* Card / Grid Styles  */
+
+.features {
+    padding: var(--space-xl) 0;
+}
+
+.card-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card {
+    background: var(--color-surface);
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.card h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-sm);
+}
+
+.card-featured {
+    border: 2px solid var(--color-primary);
+}
+
+.card-muted {
+    opacity: 0.8;
+}
+
+
+/* CTA Section: */
+
+.cta {
+    text-align: center;
+    padding: var(--space-xl) 0;
+    background: var(--color-text);
+    color: white;
+}
+
+.cta h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-sm);
+}
+
+/* Footer: */
+.footer {
+    padding: var(--space-md);
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <h2 class="nav-logo">Design System</h2>
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="main">
+        <section class="hero">
+            <div class="container">
+                <h1>Custom Properties & Math Functions</h1>
+                <p class="hero-text">
+                    A responsive, themeable design system built entirely with modern CSS. 
+                    This page demonstrates the power of custom properties and math functions 
+                    for creating flexible, maintainable interfaces.
+                </p>
+                <div class="button-group">
+                    <button class="btn">Get Started</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="features">
+            <div class="container">
+                <h2>Features</h2>
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Fluid Typography</h3>
+                        <p>
+                            Text scales smoothly across all viewport sizes using clamp() 
+                            for responsive sizing without media queries.
+                        </p>
+                    </article>
+                    
+                    <article class="card card-featured">
+                        <h3>Custom Properties</h3>
+                        <p>
+                            A complete design system built with CSS variables that cascade 
+                            through the DOM and enable dynamic theming.
+                        </p>
+                    </article>
+                    
+                    <article class="card">
+                        <h3>Component Variations</h3>
+                        <p>
+                            Scoped custom properties create variations without duplicating 
+                            CSS, keeping code maintainable and DRY.
+                        </p>
+                    </article>
+                    
+                    <article class="card card-muted">
+                        <h3>Theme Support</h3>
+                        <p>
+                            Light and dark themes that automatically update all components 
+                            by redefining root-level custom properties.
+                        </p>
+                    </article>
+                    
+                    <article class="card">
+                        <h3>Responsive Spacing</h3>
+                        <p>
+                            Fluid spacing scales with viewport size, maintaining visual 
+                            hierarchy and breathing room on all devices.
+                        </p>
+                    </article>
+                    
+                    <article class="card">
+                        <h3>Math Functions</h3>
+                        <p>
+                            Calc and clamp functions enable dynamic calculations and 
+                            fluid sizing for truly responsive layouts.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Build?</h2>
+                <p>
+                    Start creating your own design systems with custom properties 
+                    and modern CSS math functions.
+                </p>
+                <button class="btn">Start Building</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Design System Practice. Built with modern CSS.</p>
+        </div>
+        <!-- Add a theme toggle button in your navigation -->
+<button id="theme-toggle" class="btn">Toggle Theme</button>
+<!-- Add this script before closing body tag -->
+<script type="module">
+    const toggleButton = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    toggleButton.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+    });
+</script>
+    </footer>
+</body>
+</html>
+
+<style>
+
+</style>

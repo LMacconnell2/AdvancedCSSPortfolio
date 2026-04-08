@@ -1,0 +1,200 @@
+/* =========================================
+   1. FONT SETUP
+========================================= */
+@font-face {
+    font-family: "SerifPro";
+    src: url("/fonts/serif.woff2") format("woff2");
+    font-weight: 400 700;
+    font-display: swap; /* Prevents invisible text */
+}
+
+@font-face {
+    font-family: "SansUI";
+    src: url("/fonts/sans.woff2") format("woff2");
+    font-weight: 400 600;
+    font-display: swap;
+}
+
+/* =========================================
+   2. ROOT DESIGN Variables
+========================================= */
+:root {
+    /* Font stacks (fallbacks matter!) */
+    --font-serif: "SerifPro", Georgia, "Times New Roman", serif;
+    --font-sans: "SansUI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Modular scale (ratio ~1.25 Major Third) */
+    --step--1: clamp(0.8rem, 0.85vw, 0.9rem);
+    --step-0: clamp(1rem, 1.1vw, 1.125rem);
+    --step-1: clamp(1.25rem, 1.6vw, 1.4rem);
+    --step-2: clamp(1.6rem, 2.2vw, 1.8rem);
+    --step-3: clamp(2rem, 3vw, 2.5rem);
+    --step-4: clamp(2.5rem, 4vw, 3.2rem);
+
+    /* Line height scale */
+    --leading-tight: 1.2;
+    --leading-normal: 1.6;
+    --leading-loose: 1.8;
+
+    /* Measure (ideal line length) */
+    --measure: 65ch;
+
+    /* Vertical rhythm (baseline system) */
+    --space-1: clamp(0.5rem, 1vw, 0.75rem);
+    --space-2: clamp(1rem, 2vw, 1.5rem);
+    --space-3: clamp(1.5rem, 3vw, 2.5rem);
+    --space-4: clamp(2rem, 4vw, 3.5rem);
+}
+
+/* =========================================
+   3. GLOBAL RESET + BASE
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-serif);
+    font-size: var(--step-0);
+    line-height: var(--leading-normal);
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: var(--space-2);
+    color: #111;
+    background: #fff;
+}
+
+/* =========================================
+   4. LAYOUT
+========================================= */
+main {
+    display: grid;
+    gap: var(--space-4);
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+aside {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* =========================================
+   5. TYPOGRAPHY HIERARCHY
+========================================= */
+h1, h2, h3, h4 {
+    font-family: var(--font-sans);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.01em;
+}
+
+h1 {
+    font-size: var(--step-4);
+    margin-top: var(--space-3);
+}
+
+h2 {
+    font-size: var(--step-3);
+    margin-top: var(--space-3);
+}
+
+h3 {
+    font-size: var(--step-2);
+    margin-top: var(--space-2);
+}
+
+h4 {
+    font-size: var(--step-1);
+    margin-top: var(--space-2);
+}
+
+/* =========================================
+   6. BODY TEXT
+========================================= */
+p {
+    max-width: var(--measure);
+}
+
+.lead {
+    font-size: var(--step-1);
+    line-height: var(--leading-loose);
+}
+
+.small {
+    font-size: var(--step--1);
+    color: #555;
+}
+
+/* =========================================
+   7. LISTS
+========================================= */
+ul, ol {
+    padding-left: 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+/* =========================================
+   8. BLOCKQUOTE
+========================================= */
+blockquote {
+    border-left: 4px solid #ccc;
+    padding-left: var(--space-2);
+    font-style: italic;
+}
+
+cite {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--step--1);
+    font-style: normal;
+}
+
+/* =========================================
+   9. COMPONENTS
+========================================= */
+.card {
+    padding: var(--space-2);
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.callout {
+    padding: var(--space-2);
+    background: #f5f5f5;
+    border-left: 4px solid #333;
+}
+
+/* =========================================
+   10. NAV + FOOTER
+========================================= */
+header nav {
+    display: flex;
+    gap: var(--space-2);
+    font-family: var(--font-sans);
+    margin-bottom: var(--space-3);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer {
+    margin-top: var(--space-4);
+    font-size: var(--step--1);
+    text-align: center;
+}
