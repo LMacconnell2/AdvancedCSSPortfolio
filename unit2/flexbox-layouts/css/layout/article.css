@@ -19,7 +19,10 @@
  * Center content vertically and push author info to bottom with margin-top: auto
  */
 .article-hero {
-    /* Your code here */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
     min-height: 400px;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
     color: white;
@@ -39,7 +42,7 @@
 }
 
 .article-hero-meta {
-    /* Your code here - how do you push this to the bottom? */
+    margin-top: auto;
     font-size: var(--font-size-small);
     opacity: 0.8;
 }
@@ -51,13 +54,14 @@
  * This creates proportional sizing that wraps on narrow screens
  */
 .article-body {
-    /* Your code here */
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xl);
     padding: 0 var(--spacing-xl);
 }
 
 .article-content {
-    /* Your code here */
-    padding-right: var(--spacing-xl);
+    flex: 2 1 500px;
 }
 
 .article-text {
@@ -73,6 +77,8 @@
  */
 .pull-quote {
     /* Your code here */
+    align-self: center;
+    max-width: 60ch;
     font-size: var(--font-size-large);
     font-style: italic;
     font-weight: var(--font-weight-medium);
@@ -87,7 +93,7 @@
  * Hint: Fixed-ish width that shrinks proportionally to article content
  */
 .article-sidebar {
-    /* Your code here */
+    flex: 1 1 300px;
 }
 
 .sidebar-section {
@@ -109,7 +115,8 @@
  * Small thumbnail on left, text on right
  */
 .related-article {
-    /* Your code here */
+    display: flex;
+    gap: var(--spacing-sm);
     padding: var(--spacing-sm) 0;
     border-bottom: 1px solid var(--color-border);
 }
@@ -120,6 +127,7 @@
 
 .related-article-thumbnail {
     /* Your code here - fixed width */
+    flex: 0 0 80px;
     width: 80px;
     height: 60px;
     border-radius: var(--radius-sm);
@@ -128,7 +136,8 @@
 }
 
 .related-article-content {
-    /* Your code here - grows to fill space */
+    flex: 1;
+    min-width: 0;
 }
 
 .related-article-title {
@@ -148,7 +157,9 @@
  * This is similar to the review pattern from product page
  */
 .article-author {
-    /* Your code here */
+    display: flex;
+    gap: var(--spacing-lg);
+
     margin-top: var(--spacing-xxl);
     padding: var(--spacing-xl);
     background-color: var(--color-surface);
@@ -156,7 +167,7 @@
 }
 
 .author-photo {
-    /* Your code here */
+    flex: 0 0 100px;
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -165,7 +176,8 @@
 }
 
 .author-info {
-    /* Your code here */
+    flex: 1;
+    min-width: 0;
 }
 
 .author-name {
