@@ -23,6 +23,7 @@
 .product-top {
     display: flex;
     flex-wrap: wrap;
+    gap: var(--spacing-xl);
 }
 
 /* TODO: Style the image gallery
@@ -31,7 +32,8 @@
  */
 .product-gallery {
     display: flex;
-    flex-basis: 60%;
+    flex-direction: column;
+    flex-basis: 1 1 60%;
 }
 
 .product-main-image {
@@ -46,10 +48,14 @@
  * Each thumbnail should have a fixed flex-basis but can shrink
  */
 .product-thumbnails {
-    /* Your code here */
+    display: flex;
+    gap: var(--spacing-sm);
 }
 
 .product-thumbnail {
+    flex: 0 1 100px;
+    width: 100%;
+
     /* Your code here - what flex properties create fixed-width thumbnails that can shrink? */
     border-radius: var(--radius-sm);
     border: 2px solid transparent;
@@ -68,7 +74,10 @@
  * Use gap for consistent spacing between sections
  */
 .product-info {
-    /* Your code here */
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 35%;
+    gap: var(--spacing-md);
 }
 
 .product-title {
@@ -88,7 +97,9 @@
 }
 
 .product-actions {
-    /* Your code here - use Flexbox to arrange buttons */
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
 }
 
 /* TODO: Style the specifications section
@@ -102,12 +113,15 @@
 }
 
 .specs-list {
-    /* Your code here */
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
     list-style: none;
 }
 
 .spec-item {
     /* Your code here */
+    flex: 1 1 200px;
     padding: var(--spacing-med);
     background-color: var(--color-surface);
     border-radius: var(--radius-sm);
@@ -137,7 +151,8 @@
 }
 
 .review {
-    /* Your code here - implement media object pattern */
+    display: flex;
+    gap: var(--spacing-md);
     padding: var(--spacing-lg);
     border-bottom: 1px solid var(--color-border);
 }
@@ -148,6 +163,7 @@
 
 .review-avatar {
     /* Your code here - fixed width, no shrinking */
+    flex: 0 0 60px;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -155,7 +171,8 @@
 }
 
 .review-content {
-    /* Your code here - grows to fill space, remember min-width: 0 */
+    flex: 1;
+    min-width: 0; 
 }
 
 .review-author {
